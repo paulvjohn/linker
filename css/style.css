@@ -2871,14 +2871,14 @@ padding: 6p
   border-radius: 8px;
   padding-bottom: 1.5em;
   background-color: #fff;
-  -webkit-box-shadow: #bdc3c7 0 2px 1px;
-  -moz-box-shadow: #bdc3c7 0 2px 1px;
-  box-shadow: #bdc3c7 0 2px 1px;
+  -webkit-box-shadow: #bdc3c7 0 1px 1px;
+  -moz-box-shadow: #bdc3c7 0 1px 1px;
+  box-shadow: #bdc3c7 0 1px 1px;
   max-width:260px;
 }
 
-.biobg{
-  border-bottom: 3px solid #BABABA;
+.biobg{/*
+  border-bottom: 3px solid #BABABA;*/
 }
 
 .bio:hover > .desc {
@@ -2895,8 +2895,8 @@ padding: 6p
   left: 0;
   top: 80px;
   margin: auto;
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   display: block; }
 
 .avatarcontainer:hover > .hover {
@@ -2907,7 +2907,7 @@ padding: 6p
 
 .avatar {
   width: 100%;
-  border: 4px solid #BABABA;
+  border: 2px solid #ee3733;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
