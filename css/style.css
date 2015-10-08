@@ -2676,10 +2676,17 @@ ul.icons-list li i {
   border-radius: 8px;
   padding-bottom: 1.5em;
   background-color: #fff;
-  -webkit-box-shadow: #bdc3c7 0 1px 1px;
-  -moz-box-shadow: #bdc3c7 0 1px 1px;
-  box-shadow: #bdc3c7 0 1px 1px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
   max-width:260px;
+}
+
+.team-member:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .biobg{/*
