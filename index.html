@@ -1,84 +1,45 @@
-<!doctype html>
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><html lang="en" class="no-js"> <![endif]-->
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-  <!-- Basic -->
-  <title>UX 2012-16 | Home</title>
-
-  <!-- Define Charset -->
-  <meta charset="utf-8">
-
-  <!-- Responsive Metatag -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- Page Description and Author -->
-  <meta name="Project Display Page" content="UX 2012-16 Portfolio">
-  <meta name="Atharva Mhatre" content="Symbiosis Institute of Design">
-
-  <!-- Bootstrap CSS  -->
-  <link rel="stylesheet" href="asset/css/bootstrap.min.css" type="text/css" media="screen">
-
-  <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen">
-
-  <!-- Slicknav -->
-  <link rel="stylesheet" type="text/css" href="css/slicknav.css" media="screen">
-
-  <!-- CSS Styles  -->
-  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
-
-  <!-- Responsive CSS Styles  -->
-  <link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen">
-
-  <!-- Css3 Transitions Styles  -->
-  <link rel="stylesheet" type="text/css" href="css/animate.css" media="screen">
-
-  <!-- Color CSS Styles  -->
-  <link rel="stylesheet" type="text/css" href="css/colors/red.css" title="red" media="screen" />
-
-  <!-- JS  -->
-  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="js/jquery.migrate.js"></script>
-  <script type="text/javascript" src="js/modernizrr.js"></script>
-
-  <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-    <script type="text/javascript" src="js/json.js"></script>
-  <script type="text/javascript" src="js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-  <script type="text/javascript" src="js/nivo-lightbox.min.js"></script>
-  <script type="text/javascript" src="js/jquery.isotope.min.js"></script>
-  <script type="text/javascript" src="js/jquery.appear.js"></script>
-  <script type="text/javascript" src="js/count-to.js"></script>
-  <script type="text/javascript" src="js/jquery.textillate.js"></script>
-  <script type="text/javascript" src="js/jquery.lettering.js"></script>
-  <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
-  <script type="text/javascript" src="js/mediaelement-and-player.js"></script>
-  <script type="text/javascript" src="js/jquery.slicknav.js"></script>
-  
-
-  <!--[if IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-</head>
-
-<body>
-
-<script id="company_template" type="text/x-handlebars-template">
-{{#each CDataMap}}
-
-<div>Name : {{this.name}} <br/>
-
-    Location: {{this.location.city.name}} <br />
-    Population: {{this.location.city.population}}
-</div>
-{{/each}}
-
-</script>
-</body>
-
-
+  <head>
+    <meta charset="utf-8">
+    <title>Concise Handlebars.js</title>
+    <!-- 0a. CSS -->
+    <link rel="stylesheet" href="style.css">
+ 
+    <!-- 0a. JS -->
+    <script src="https://code.jquery.com/jquery-git2.min.js"></script><!-- online jquery.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script><!-- online handlebars.js-->
+  </head>
+ 
+  <body>
+    <!--1. Data (json format!) -->
+    <script>
+    var url='http://www.thatsmywork.in/linker/data.json'; // relative url : 'data.json'; protocole-relative absolute url: '//website.org/path/to/data.json';
+    </script>
+ 
+    <!-- 2. Anchor -->
+    <div id="anchor">This div is the <b>#anchor</b>.</div>
+ 
+    <!-- 3. Template -->
+    <script id="tpl" type="text/template">
+        {{#people}}
+            <div><img src="{{photo}}"><b><a href="{{twitter}}">{{family}} {{name}}</a></b> — {{title}}, {{place}} : {{introduction}}.</div>
+        {{/people}}
+    </script>
+    <p></p>
+ 
+    <!--4. Handlebars.js slingshot -->
+    <script>
+    //4a.function creation
+    var slingshot = function (url, tplId, anchor) {
+     $.getJSON(url, function(data) {
+              var template = $(tplId).html();
+              var stone = Handlebars.compile(template)(data);
+              $(anchor).append(stone);
+     });
+  }
+    //4b.function firing
+    slingshot('data.json', '#tpl', '#anchor'); // since url = 'data.json' , we can use both notations.
+    </script>
+  </body>
 </html>
