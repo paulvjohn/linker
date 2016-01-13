@@ -1,28 +1,19 @@
-var STUDENT_METHOD ={
+var data= {
+"CDataMap" : [
+    {
+        "name": "Jim Cowart",  
+        "location": {
+            "city": {
+                "name": "New york",
+                "population": 494949494
+                }
+        }
+    },
 
-handlerData:function(resJSON){
-
-var templateSource = $("#student-template").html(),
-
-template = Handlebars.compile(templateSource),
-
-studentHTML = template(resJSON);
-
-$('#my-container').html(studentHTML);
-
-},
-loadStudentData : function(){
-
-$.ajax({
-url:"asset/student.json",
-method:'get',
-success:this.handlerData
-
-})
-}
+  ]
 };
 
-$(document).ready(function(){
-
-STUDENT_METHOD.loadStudentData();
-});
+var templateSource   = $("#company_template").html();
+template = Handlebars.compile(templateSource);
+studentHTML = template(data);
+$("p").append(studentHTML);
