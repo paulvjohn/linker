@@ -195,76 +195,7 @@ var $ = jQuery.noConflict();
 
 $(document).ready(function($) {
     "use strict";
-    
-    /*-------------------------------------------------*/
-    /* =  Carousel
-    /*-------------------------------------------------*/
-    try {
-        $(".carousel-news").owlCarousel({
-            loop:true,
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            items:1,
-            autoplay:true,
-            autoplayHoverPause:true
-        });
-
-        $(".testimonials-carousel").owlCarousel({
-            loop:true,
-            animateOut: 'fadeOut',
-            animateIn: 'flipInX',
-            items:1,
-            autoplay:true,
-            autoplayHoverPause:true
-        });
-
-        $(".image-carousel").owlCarousel({
-            loop:true,
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            items:1,
-            autoplay:true,
-            autoplayHoverPause:true,
-            dots:false
-        });
-
-        $(".team-carousel").owlCarousel({
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:3,
-                    loop:false
-                }
-            }
-        });
-        $(".sponsor-carousel").owlCarousel({
-            loop:true,
-            autoplay:true,
-            dots:false,
-            autoplayTimeout:3000,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:2
-                },
-                600:{
-                    items:2
-                },
-                1000:{
-                    items:4,
-                    loop:true
-                }
-            }
-        });
-    } catch(err) {
-
-    }
+  
     /*-------------------------------------------------*/
     /* =  Skills
     /*-------------------------------------------------*/
@@ -279,14 +210,7 @@ $(document).ready(function($) {
     } catch(err) {
 
     }
-    /*-------------------------------------------------*/
-    /* =  Parallax
-    /*-------------------------------------------------*/
-    try {
-        $('.parallax').scrolly({bgParallax: true});
-    } catch(err) {
 
-    }
     /*-------------------------------------------------*/
     /* =  Scroll between sections
     /*-------------------------------------------------*/
