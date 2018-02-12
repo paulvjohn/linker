@@ -1,6 +1,7 @@
 
 var $ = jQuery.noConflict();
 
+
 (function($) {
     "use strict";
 
@@ -9,6 +10,26 @@ var $ = jQuery.noConflict();
     /*-------------------------------------------------*/
     Pace.on("done", function(){
         $("#myloader").fadeOut(500);
+    });
+    /*-------------------------------------------------*/
+    /* =  Sticky menu
+    /*-------------------------------------------------*/
+    $(window).on('scroll', function (){
+
+        var scroll  =  $(window).scrollTop();
+        var height  =  $(window).height();
+
+        if( scroll >= 80 ) {
+            $('header').addClass("fixed-top animated fadeInDown").delay( 2000 ).fadeIn();
+            $('header nav').removeClass("animated fadeInDown");
+        } else if ( scroll <= height ) {
+            $('header').removeClass("fixed-top animated fadeInDown");
+        } else {
+            $('header').removeClass("fixed-top animated fadeInDown");
+        }
+        if (scroll <= 80) {
+            $('header nav').addClass("animated fadeInDown").delay( 2000 ).fadeIn();
+        } 
     });
     /*-------------------------------------------------*/
     /* =  Menu
@@ -34,84 +55,19 @@ var $ = jQuery.noConflict();
 
     }
     /*-------------------------------------------------*/
-    /* =  Slider
+    /* =  Instafeed
     /*-------------------------------------------------*/
+    var settings = {"accessToken":"", "userId":"1661129930"}; //Add your access token and the instagram user id to show the profile. AccessToken to test 393402381.1677ed0.d26e74eb93b04d9b8b729cdf097c3f55
     try {
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "fade",
-                controlNav: false,
-                useCSS: false,
-                start: function(){
-                    $('.slides').show();
-                }
-            });
+        var userFeed = new Instafeed({
+            get: 'user',
+            userId: settings.userId,
+            accessToken: settings.accessToken,
+            resolution: 'standard_resolution',
+            limit: 4,
+            template: '<li class="col-sm-3 col-xs-6"><a href="{{link}}" target="_blank" class="image"><img src="{{image}}" /><span class="caption">{{caption}}</span><span class="logo"><i class="icon ion-social-instagram"></i></span></a></li>'
         });
-    } catch(err) {
-
-    }
-
-    /*-------------------------------------------------*/
-    /* =  Isotope
-    /*-------------------------------------------------*/
-    try {
-        var $mainContainer=$('.works-items');
-        $mainContainer.imagesLoaded( function(){
-
-            var $container=$('.works-items').isotope({itemSelector:'.one-item'});
-
-            $('#works .filters').on('click','li',function(){
-                var filterValue=$(this).attr('data-filter');$container.isotope({
-                    filter:filterValue});
-            });
-            $('#works .filters').each(function(i,buttonGroup){
-                var $buttonGroup=$(buttonGroup);
-                $buttonGroup.on('click','li',function(){
-                    $buttonGroup.find('.is-checked').removeClass('is-checked');
-                    $(this).addClass('is-checked');
-                });
-            });
-            
-        });
-    } catch(err) {
-
-    }
-    //portfolio with border
-    try {
-        var $mainContainerBorder=$('.works-items.border');
-        $mainContainerBorder.imagesLoaded( function(){
-
-            var $container=$('.works-items.border').isotope({
-                itemSelector:'.one-item',
-                layoutMode: 'masonry',
-                masonry: {
-                    columnWidth: '.one-item',
-                    gutter: 30
-                },
-                percentPosition: true
-            });
-
-            $('#works .filters').on('click','li',function(){
-                var filterValue=$(this).attr('data-filter');$container.isotope({
-                    filter:filterValue});
-            });
-            $('#works .filters').each(function(i,buttonGroup){
-                var $buttonGroup=$(buttonGroup);
-                $buttonGroup.on('click','li',function(){
-                    $buttonGroup.find('.is-checked').removeClass('is-checked');
-                    $(this).addClass('is-checked');
-                });
-            });
-        });
-    } catch(err) {
-
-    }
-    //blog masonry
-    try {
-        var $blogContainer = $('.masonry-grid');
-        $blogContainer.imagesLoaded( function(){
-            $blogContainer.isotope({itemSelector: '.masonry-item', layoutMode: 'masonry' });
-        });
+        userFeed.run();
     } catch(err) {
 
     }
@@ -165,10 +121,11 @@ var $ = jQuery.noConflict();
     /*-------------------------------------------------*/
     /* =  Contact Form
     /*-------------------------------------------------*/
+
     var submitContact = $('#submit-contact'),
         message = $('#msg');
 
-    submitContact.on('click', function(e){
+    submitContact.on("click",function(e){
         e.preventDefault();
 
         var $this = $(this);
@@ -190,12 +147,122 @@ var $ = jQuery.noConflict();
             }
         });
     });
+    /*-------------------------------------------------*/
+    /* =  Isotope
+    /*-------------------------------------------------*/
+    try {
+        var $mainContainer=$('.works-items');
+        $mainContainer.imagesLoaded( function(){
 
+                var $container=$('.works-items').isotope({itemSelector:'.one-item'});
+
+                $('#works .filters').on('click','li',function(){
+                    var filterValue=$(this).attr('data-filter');$container.isotope({
+                        filter:filterValue});
+                });
+                $('#works .filters').each(function(i,buttonGroup){
+                    var $buttonGroup=$(buttonGroup);
+                    $buttonGroup.on('click','li',function(){
+                        $buttonGroup.find('.is-checked').removeClass('is-checked');
+                        $(this).addClass('is-checked');
+                    });
+                });
+            
+        });
+    } catch(err) {
+
+    }
+    /*-------------------------------------------------*/
+    /* =  Slider
+    /*-------------------------------------------------*/
+    try {
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "fade",
+                controlNav: false,
+                useCSS: false,
+                start: function(){
+                    $('.slides').show();
+                }
+            });
+        });
+    } catch(err) {
+
+    }
 })(jQuery);
 
 $(document).ready(function($) {
     "use strict";
-  
+
+    /*-------------------------------------------------*/
+    /* =  Carousel
+    /*-------------------------------------------------*/
+    try {
+        $(".carousel-news").owlCarousel({
+            loop:true,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            items:1,
+            autoplay:true,
+            autoplayHoverPause:true
+        });
+
+        $(".testimonials-carousel").owlCarousel({
+            loop:true,
+            animateOut: 'fadeOut',
+            animateIn: 'flipInX',
+            items:1,
+            autoplay:true,
+            autoplayHoverPause:true
+        });
+
+        $(".image-carousel").owlCarousel({
+            loop:true,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            items:1,
+            autoplay:true,
+            autoplayHoverPause:true,
+            dots:false
+        });
+
+        $(".team-carousel").owlCarousel({
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:3,
+                    loop:false
+                }
+            }
+        });
+        $(".sponsor-carousel").owlCarousel({
+            loop:true,
+            autoplay:true,
+            dots:false,
+            autoplayTimeout:3000,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:2
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:4,
+                    loop:true
+                }
+            }
+        });
+    } catch(err) {
+
+    }
     /*-------------------------------------------------*/
     /* =  Skills
     /*-------------------------------------------------*/
@@ -210,7 +277,14 @@ $(document).ready(function($) {
     } catch(err) {
 
     }
+    /*-------------------------------------------------*/
+    /* =  Parallax
+    /*-------------------------------------------------*/
+    try {
+        $('.parallax').scrolly({bgParallax: true});
+    } catch(err) {
 
+    }
     /*-------------------------------------------------*/
     /* =  Scroll between sections
     /*-------------------------------------------------*/
@@ -226,4 +300,5 @@ $(document).ready(function($) {
         $.scrollTo( $this.attr('href') , 1000, { easing: 'swing' , offset: offset , 'axis':'y' } );
         event.preventDefault();
     });
+
 });
